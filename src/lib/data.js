@@ -3,7 +3,7 @@
 import prisma from '@/lib/prisma'
 
 
-// ------------------------- GRUPOS ------------------------- 
+// ------------------------- PLANTAS ------------------------- 
 
 
 export async function obtenerPlantas() {
@@ -63,7 +63,7 @@ export async function obtenerPlantasIdNombre() {
 
 
 
-// ------------------------- ASIGNATURAS ------------------------- 
+// ------------------------- MEDICINAS ------------------------- 
 
 export async function obtenerMedicinas() {
 
@@ -120,7 +120,7 @@ export async function obtenerMedicinasIdNombre() {
 
 
 
-// ------------------------- ESTUDIANTES ------------------------- 
+// ------------------------- PACIENTES ------------------------- 
 
 export async function obtenerPacientes() {
 
