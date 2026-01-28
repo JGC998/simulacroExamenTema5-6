@@ -17,7 +17,7 @@ export default function Lista({ promesaMedicinas }) {
             <div className='flex justify-end items-center gap-4 pb-4'>
                 <Modal openElement={<IconoInsertar />}>
 
-                    <h2 className='text-2xl font-bold'>INSERTAR ASIGNATURA</h2>
+                    <h2 className='text-2xl font-bold'>INSERTAR MEDICINA</h2>
                     <Form action={insertarMedicina} textSubmit="Insertar" />
 
                 </Modal>
@@ -45,14 +45,14 @@ function Item({ medicina }) {
             <div className='flex gap-2 justify-end'>
                 <Modal openElement={<IconoModificar />}>
 
-                    <h2 className='text-2xl font-bold'>ACTUALIZAR ASIGNATURA</h2>
+                    <h2 className='text-2xl font-bold'>ACTUALIZAR MEDICINA</h2>
                     <Form action={modificarMedicina} medicina={medicina} textSubmit="Actualizar" />
 
                 </Modal>
 
                 <Modal openElement={<IconoEliminar />}>
 
-                    <h2 className='text-2xl font-bold'>ELIMINAR ASIGNATURA</h2>
+                    <h2 className='text-2xl font-bold'>ELIMINAR MEDICINA</h2>
                     <Form action={eliminarMedicina} medicina={medicina} disabled={true} textSubmit="Eliminar" />
 
                 </Modal>

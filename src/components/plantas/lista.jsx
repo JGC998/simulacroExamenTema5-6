@@ -65,7 +65,7 @@ export default function Lista({ promesaPlantas }) {
 
                 <Modal openElement={<IconoInsertar />}>
 
-                    <h2 className='text-2xl font-bold'>INSERTAR GRUPO</h2>
+                    <h2 className='text-2xl font-bold'>INSERTAR PLANTA</h2>
                     <Form action={insertarPlanta} textSubmit="Insertar" />
 
                 </Modal>
@@ -94,14 +94,14 @@ function Item({ planta }) {
             <div className='flex gap-2 justify-end'>
                 <Modal openElement={<IconoModificar />}>
 
-                    <h2 className='text-2xl font-bold'>ACTUALIZAR GRUPO</h2>
+                    <h2 className='text-2xl font-bold'>ACTUALIZAR PLANTA</h2>
                     <Form action={modificarPlanta} planta={planta} textSubmit="Actualizar" />
 
                 </Modal>
 
                 <Modal openElement={<IconoEliminar />}           >
 
-                    <h2 className='text-2xl font-bold'>ELIMINAR GRUPO</h2>
+                    <h2 className='text-2xl font-bold'>ELIMINAR PLANTA</h2>
                     <Form action={eliminarPlanta} planta={planta} disabled={true} textSubmit="Eliminar" />
 
                 </Modal>
