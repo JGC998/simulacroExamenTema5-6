@@ -7,7 +7,7 @@ import { revalidatePath } from "next/cache"
 
 
 
-// ------------------------------ GRUPOS ------------------------------
+// ------------------------------ PLANTAS ------------------------------
 
 export async function insertarPlanta(prevState, formData) {
     const nombre = formData.get('nombre')
@@ -77,7 +77,7 @@ export async function eliminarPlanta(prevState, formData) {
 
 
 
-// ------------------------------ ASIGNATURAS ------------------------------
+// ------------------------------ MEDICINAS ------------------------------
 
 export async function insertarMedicina(prevState, formData) {
     const nombre = formData.get('nombre')
@@ -146,7 +146,7 @@ export async function eliminarMedicina(prevState, formData) {
 
 
 
-// ------------------------------ ESTUDIANTES ------------------------------
+// ------------------------------ PACIENTES ------------------------------
 
 export async function insertarPaciente(prevState, formData) {
     const nombre = formData.get('nombre')
@@ -155,11 +155,11 @@ export async function insertarPaciente(prevState, formData) {
     const foto = formData.get('foto')
 
 
-    // GRUPO - ESTUDIANTE (1:N)
+    // PLANTA - PACIENTE (1:N)
     const plantaId = formData.get('plantaId') ? Number(formData.get('plantaId')) : null  // Este valor puede ser nulo
 
 
-    // ESTUDIANTE - ASIGNATURAS (N:M)
+    // PACIENTE - MEDICINAS (N:M)
     // Array con IDs de todas las medicinas. Formato: [ {id: 1}, {id: 2}, ...]
     const medicinasIDs = await prisma.medicina.findMany({
         select: { id: true }
@@ -197,11 +197,11 @@ export async function modificarPaciente(prevState, formData) {
     const fecha_nacimiento = new Date(formData.get('fecha_nacimiento'))
     const foto = formData.get('foto')
 
-    // GRUPO - ESTUDIANTE (1:N)
+    // PLANTA - PACIENTE (1:N)
     const plantaId = formData.get('plantaId') ? Number(formData.get('plantaId')) : null  // Este valor puede ser nulo
 
 
-    // ESTUDIANTE - ASIGNATURAS  (N:M)
+    // PACIENTE - MEDICINAS  (N:M)
     // Array con IDs de todas las medicinas. Formato: [ {id: 1}, {id: 2}, ...]
     const medicinasIDs = await prisma.medicina.findMany({
         select: { id: true }
