@@ -1,0 +1,190 @@
+'use server'
+
+import prisma from '@/lib/prisma'
+
+
+// ------------------------- GRUPOS ------------------------- 
+
+
+export async function obtenerPlantas() {
+
+    try {
+        // await new Promise((resolve) => setTimeout(resolve, 1000))
+        const plantas = await prisma.planta.findMany({
+            include: {
+                pacientes: {
+                    select: {
+                        id: true,
+                        nombre: true
+                    }
+                }
+            }
+        })
+        return plantas
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+export async function obtenerPlanta(id) {
+
+    try {
+        // await new Promise((resolve) => setTimeout(resolve, 1000))
+        const planta = await prisma.planta.findUnique({
+            where: {
+                id: Number(id)
+            },
+            include: {
+                pacientes: true
+            }
+        })
+        return planta
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+export async function obtenerPlantasIdNombre() {
+
+    try {
+        const plantas = await prisma.planta.findMany({
+            select: {
+                id: true,
+                nombre: true
+            }
+        })
+        return plantas
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+
+// ------------------------- ASIGNATURAS ------------------------- 
+
+export async function obtenerMedicinas() {
+
+    try {
+        const medicinas = await prisma.medicina.findMany({
+            include: {
+                pacientes: {
+                    select: {
+                        id: true,
+                        nombre: true
+                    }
+                }
+            }
+        })
+        return medicinas
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+export async function obtenerMedicina(id) {
+
+    try {
+        const medicina = await prisma.medicina.findUnique({
+            where: {
+                id: Number(id)
+            },
+            include: {
+                pacientes: true
+            }
+        })
+        return medicina
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+export async function obtenerMedicinasIdNombre() {
+
+    try {
+        const medicinas = await prisma.medicina.findMany({
+            select: {
+                id: true,
+                nombre: true
+            }
+        })
+        return medicinas
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+
+// ------------------------- ESTUDIANTES ------------------------- 
+
+export async function obtenerPacientes() {
+
+    try {
+        const pacientes = await prisma.paciente.findMany({
+            select: {
+                id: true,
+                nombre: true,
+                tutor_legal: true,
+                fecha_nacimiento: true,
+                foto: true,
+                plantaId: true,
+                planta: {
+                    select: {
+                        id: true,
+                        nombre: true
+                    }
+                },
+                medicinas: {
+                    select: {
+                        id: true,
+                        nombre: true
+                    }
+                }
+            }
+        })
+        console.log(pacientes)
+        return pacientes
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+export async function obtenerPaciente(id) {
+
+    try {
+        const paciente = await prisma.paciente.findUnique({
+            where: {
+                id: Number(id)
+            },
+            include: {
+                planta: true,
+                medicinas: true
+            }
+        })
+        return paciente
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+export async function obtenerPacientesIdNombre() {
+
+    try {
+        const pacientes = await prisma.paciente.findMany({
+            select: {
+                id: true,
+                nombre: true
+            }
+        })
+        return pacientes
+    } catch (error) {
+        console.log(error)
+    }
+}
