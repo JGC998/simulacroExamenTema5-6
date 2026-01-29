@@ -7,32 +7,35 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// La Planta tiene muchos Pacientes (1:N)
 model Planta {
-  id     Int    @id @default(autoincrement())
-  nombre String @unique
-  tutor  String
-  aula   String
+  id           Int    @id @default(autoincrement())
+  nombre       String @unique
+  jefe_planta  String
+  numero_camas Int
 
   pacientes Paciente[]
 }
 
+// El Paciente tiene una Planta y muchas Medicinas (N:M)
 model Paciente {
   id               Int      @id @default(autoincrement())
   nombre           String
   fecha_nacimiento DateTime
   foto             String?
-  tutor_legal      String
+  tutor_legal      String? // Opcional, solo si menor o dependiente
 
   medicinas Medicina[]
-  plantaId     Int?
-  planta       Planta?       @relation(fields: [plantaId], references: [id])
+  plantaId  Int?
+  planta    Planta?    @relation(fields: [plantaId], references: [id])
 }
 
+// La Medicina tiene muchos Pacientes (N:M)
 model Medicina {
-  id           Int     @id @default(autoincrement())
-  nombre       String
-  profesor     String?
-  horas_semana Int
+  id            Int     @id @default(autoincrement())
+  nombre        String
+  via           String? // Oral, Intravenosa, etc.
+  observaciones String? // Notas o efectos secundarios
 
   pacientes Paciente[]
 }

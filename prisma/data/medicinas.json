@@ -1,0 +1,37 @@
+[
+    {
+        "nombre": "Ibuprofeno",
+        "via": "Oral",
+        "observaciones": "Para el dolor y la fiebre."
+    },
+    {
+        "nombre": "Paracetamol",
+        "via": "Oral",
+        "observaciones": "Analgésico y antipirético."
+    },
+    {
+        "nombre": "Amoxicilina",
+        "via": "Oral",
+        "observaciones": "Antibiótico para infecciones."
+    },
+    {
+        "nombre": "Insulina",
+        "via": "Subcutánea",
+        "observaciones": "Para control de glucemia."
+    },
+    {
+        "nombre": "Morfina",
+        "via": "Intravenosa",
+        "observaciones": "Analgésico potente para dolor severo."
+    },
+    {
+        "nombre": "Lorazepam",
+        "via": "Oral",
+        "observaciones": "Ansiolítico."
+    },
+    {
+        "nombre": "Salbutamol",
+        "via": "Inhalatoria",
+        "observaciones": "Broncodilatador para asma."
+    }
+]

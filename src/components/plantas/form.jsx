@@ -19,36 +19,48 @@ export default function Form({ action, planta, disabled = false, textSubmit = "E
     }, [state])
 
     return (
-        <form id={formId} action={faction} className="flex flex-col gap-2 border p-4 border-blue-400">
+        <form id={formId} action={faction} className="flex flex-col gap-4 bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800">
             <input type="hidden" name="id" value={planta?.id} />
-            <input
-                type="text"
-                name="nombre"
-                placeholder="Nombre"
-                defaultValue={planta?.nombre}
-                disabled={disabled}
-            />
-            <input
-                type="text"
-                name="tutor"
-                placeholder="Tutor"
-                defaultValue={planta?.tutor}
-                disabled={disabled}
-            />
-            <input
-                type="text"
-                name="aula"
-                placeholder="Aula"
-                defaultValue={planta?.aula}
-                disabled={disabled}
-            />
+            <div className="space-y-1">
+                <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Nombre</label>
+                <input
+                    type="text"
+                    name="nombre"
+                    placeholder="Nombre de la planta"
+                    defaultValue={planta?.nombre}
+                    disabled={disabled}
+                    className="w-full p-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-2 focus:ring-blue-500 outline-none transition-all disabled:opacity-50"
+                />
+            </div>
+            <div className="space-y-1">
+                <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Jefe de Planta</label>
+                <input
+                    type="text"
+                    name="jefe_planta"
+                    placeholder="Dr. Nombre Apellido"
+                    defaultValue={planta?.jefe_planta}
+                    disabled={disabled}
+                    className="w-full p-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-2 focus:ring-blue-500 outline-none transition-all disabled:opacity-50"
+                />
+            </div>
+            <div className="space-y-1">
+                <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Número de camas</label>
+                <input
+                    type="number"
+                    name="numero_camas"
+                    placeholder="Ej: 20"
+                    defaultValue={planta?.numero_camas}
+                    disabled={disabled}
+                    className="w-full p-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-2 focus:ring-blue-500 outline-none transition-all disabled:opacity-50"
+                />
+            </div>
             <button
                 type="submit"
-                className="bg-blue-500 text-white p-2 rounded-md hover:cursor-pointer disabled:bg-blue-300 disabled:cursor-not-allowed"
+                className="mt-4 bg-blue-600 text-white font-medium p-2.5 rounded-lg hover:bg-blue-700 hover:shadow-md active:scale-95 transition-all disabled:bg-blue-400 disabled:cursor-not-allowed flex justify-center"
                 disabled={isPending}
             >
                 {isPending
-                    ? <p className="animate-ping">Procesando...</p>
+                    ? <p className="animate-pulse">Procesando...</p>
                     : textSubmit}
             </button>
         </form>

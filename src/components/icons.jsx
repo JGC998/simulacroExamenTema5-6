@@ -1,17 +1,13 @@
 import { FilePenLineIcon, PlusIcon, TrashIcon } from "lucide-react"
 
-
-
-export const IconoInsertar = () => <PlusIcon size={32}
-    className='text-green-500 border border-green-500 rounded-full bg-green-200 p-2 cursor-pointer hover:text-green-500 hover:bg-green-300'
+export const IconoInsertar = () => <PlusIcon size={24}
+    className='text-white bg-green-600 rounded-full p-1 cursor-pointer hover:bg-green-700 hover:scale-110 transition-all shadow-md'
 />
 
-
-export const IconoModificar = () => <FilePenLineIcon size={32}
-    className='text-orange-500 border border-orange-500 rounded-full bg-orange-200 p-2 cursor-pointer hover:text-orange-500 hover:bg-orange-300'
+export const IconoModificar = () => <FilePenLineIcon size={24}
+    className='text-blue-600 bg-blue-100 rounded-lg p-1 cursor-pointer hover:bg-blue-200 hover:scale-110 transition-all dark:bg-blue-900/30 dark:text-blue-300 dark:hover:bg-blue-900/50'
 />
 
-
-export const IconoEliminar = () => <TrashIcon size={32}
-    className='text-red-500 border border-red-500 rounded-full bg-red-200 p-2 cursor-pointer hover:text-red-500 hover:bg-red-300'
+export const IconoEliminar = () => <TrashIcon size={24}
+    className='text-red-600 bg-red-100 rounded-lg p-1 cursor-pointer hover:bg-red-200 hover:scale-110 transition-all dark:bg-red-900/30 dark:text-red-300 dark:hover:bg-red-900/50'
 />

@@ -34,27 +34,28 @@ export default function Lista({ promesaMedicinas }) {
 
 
 function Item({ medicina }) {
-
     return (
-        <div className='p-4 rounded-lg bg-blue-200'>
-            <Link href={`/medicinas/${medicina.id}`} >
-                <p>Nombre: {medicina.nombre} </p>
-                <p>Profesor: {medicina.profesor}</p>
-                <p>Horas semanales: {medicina.horas_semana}</p>
+        <div className='p-6 rounded-xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-lg hover:shadow-xl transition-all duration-300'>
+            <Link href={`/medicinas/${medicina.id}`} className="block mb-4 group">
+                <p className="text-xl font-bold text-slate-800 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    {medicina.nombre}
+                </p>
+                <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
+                    💉 Vía: {medicina.via}
+                </p>
+                <p className="text-slate-500 dark:text-slate-500 text-sm mt-1">
+                    📝 {medicina.observaciones}
+                </p>
             </Link>
-            <div className='flex gap-2 justify-end'>
+            <div className='flex gap-3 justify-end pt-4 border-t border-slate-100 dark:border-slate-800'>
                 <Modal openElement={<IconoModificar />}>
-
-                    <h2 className='text-2xl font-bold'>ACTUALIZAR MEDICINA</h2>
+                    <h2 className='text-2xl font-bold mb-4 text-slate-800 dark:text-white'>ACTUALIZAR MEDICINA</h2>
                     <Form action={modificarMedicina} medicina={medicina} textSubmit="Actualizar" />
-
                 </Modal>
 
                 <Modal openElement={<IconoEliminar />}>
-
-                    <h2 className='text-2xl font-bold'>ELIMINAR MEDICINA</h2>
+                    <h2 className='text-2xl font-bold mb-4 text-slate-800 dark:text-white'>ELIMINAR MEDICINA</h2>
                     <Form action={eliminarMedicina} medicina={medicina} disabled={true} textSubmit="Eliminar" />
-
                 </Modal>
             </div>
         </div>

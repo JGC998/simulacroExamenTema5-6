@@ -21,48 +21,66 @@ export default function Form({ action, paciente, plantasIdNombre, medicinasIdNom
     }, [state])
 
     return (
-        <form id={formId} action={faction} className="flex flex-col gap-2 border p-4 border-blue-400" >
+        <form id={formId} action={faction} className="flex flex-col gap-4 bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800" >
             <input type="hidden" name="id" value={paciente?.id} />
-            <input
-                type="text"
-                name="nombre"
-                placeholder="Nombre"
-                defaultValue={paciente?.nombre}
-                disabled={disabled}
-            />
-            <input
-                type="text"
-                name="foto"
-                placeholder="Foto"
-                defaultValue={paciente?.foto}
-                disabled={disabled}
-            />
-            <input
-                type="text"
-                name="tutor_legal"
-                placeholder="Tutor legal"
-                defaultValue={paciente?.tutor_legal}
-                disabled={disabled}
-            />
-            <input
-                type="date"
-                name="fecha_nacimiento"
-                placeholder="Fecha de nacimiento"
-                defaultValue={paciente?.fecha_nacimiento?.toISOString().split('T')[0] || '2000-01-01'}
-                disabled={disabled}
-            />
+
+            <div className="space-y-1">
+                <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Nombre</label>
+                <input
+                    type="text"
+                    name="nombre"
+                    placeholder="Nombre completo"
+                    defaultValue={paciente?.nombre}
+                    disabled={disabled}
+                    className="w-full p-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-2 focus:ring-blue-500 outline-none transition-all disabled:opacity-50"
+                />
+            </div>
+
+            <div className="space-y-1">
+                <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Foto (URL)</label>
+                <input
+                    type="text"
+                    name="foto"
+                    placeholder="https://..."
+                    defaultValue={paciente?.foto}
+                    disabled={disabled}
+                    className="w-full p-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-2 focus:ring-blue-500 outline-none transition-all disabled:opacity-50"
+                />
+            </div>
+
+            <div className="space-y-1">
+                <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Tutor Legal</label>
+                <input
+                    type="text"
+                    name="tutor_legal"
+                    placeholder="Nombre del tutor"
+                    defaultValue={paciente?.tutor_legal}
+                    disabled={disabled}
+                    className="w-full p-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-2 focus:ring-blue-500 outline-none transition-all disabled:opacity-50"
+                />
+            </div>
+
+            <div className="space-y-1">
+                <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Fecha de Nacimiento</label>
+                <input
+                    type="date"
+                    name="fecha_nacimiento"
+                    defaultValue={paciente?.fecha_nacimiento?.toISOString().split('T')[0] || '2000-01-01'}
+                    disabled={disabled}
+                    className="w-full p-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-2 focus:ring-blue-500 outline-none transition-all disabled:opacity-50"
+                />
+            </div>
 
 
             {/* Select */}
-            {disabled
-                ? <p>Planta: {paciente?.planta?.nombre}</p>
-                : <details>
-                    <summary>Planta ({paciente?.planta?.nombre})</summary>
-                    <select className="w-full p-2 border border-blue-400 rounded-md"
+            <div className="space-y-1">
+                <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Planta</label>
+                {disabled
+                    ? <div className="p-2 bg-slate-100 dark:bg-slate-800 rounded-lg">{paciente?.planta?.nombre || 'Sin asignar'}</div>
+                    : <select className="w-full p-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-2 focus:ring-blue-500 outline-none transition-all"
                         name="plantaId"
                         key={paciente?.plantaId}
                         defaultValue={paciente?.plantaId}
-                        size={4}
                         disabled={disabled}
                     >
                         <option value="">Seleccionar planta</option>
@@ -72,51 +90,35 @@ export default function Form({ action, paciente, plantasIdNombre, medicinasIdNom
                             </option>
                         ))}
                     </select>
-                </details>
-            }
-
-
-            {/* Radio */}
-            {/* {disabled
-                ? <p>Planta: {paciente?.planta?.nombre}</p>
-                : <details>
-                    <summary>Planta ({paciente?.planta?.nombre})</summary>
-                    {plantasIdNombre?.map((planta) => <div key={planta.id}>
-                        {paciente?.planta?.id == planta.id
-                            ? <input key={`radio-${planta.id}`} type='radio' name='plantaId' value={planta.id} defaultChecked />
-                            : <input type='radio' name='plantaId' value={planta.id} />
-                        }
-                        {planta.nombre}
-                    </div>)}
-                </details>
-            } */}
-
+                }
+            </div>
 
             {/* Checkbox */}
-            {disabled
-                ? <p>Medicinas: {paciente?.medicinas?.map(a => a.nombre).join(', ')}</p>
-                : <details>
-                    <summary>Medicinas ({paciente?.medicinas?.map(a => a.nombre).join(', ')})</summary>
-
-                    {medicinasIdNombre?.map((medicina) => (
-                        <label key={medicina.id} className='block'>
-                            <input
-                                type='checkbox'
-                                name={medicina.id}
-                                value={medicina.id}
-                                defaultChecked={paciente?.medicinas?.some(a => a.id == medicina.id)}
-                            />
-
-                            {medicina.nombre}
-                        </label>
-                    ))}
-                </details>
-            }
+            <div className="space-y-2 pt-2">
+                <label className="text-sm font-medium text-slate-700 dark:text-slate-300 block">Medicinas</label>
+                {disabled
+                    ? <div className="p-3 bg-slate-100 dark:bg-slate-800 rounded-lg text-sm">{paciente?.medicinas?.length > 0 ? paciente?.medicinas?.map(a => a.nombre).join(', ') : 'Ninguna'}</div>
+                    : <div className="p-4 border border-slate-300 dark:border-slate-700 rounded-lg bg-slate-50 dark:bg-slate-800 max-h-40 overflow-y-auto space-y-2">
+                        {medicinasIdNombre?.map((medicina) => (
+                            <label key={medicina.id} className='flex items-center gap-3 cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-700 p-1 rounded transition-colors'>
+                                <input
+                                    type='checkbox'
+                                    name={medicina.id}
+                                    value={medicina.id}
+                                    defaultChecked={paciente?.medicinas?.some(a => a.id == medicina.id)}
+                                    className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
+                                />
+                                <span className="text-sm">{medicina.nombre}</span>
+                            </label>
+                        ))}
+                    </div>
+                }
+            </div>
 
 
             <button
                 type="submit"
-                className="flex justify-center items-center bg-blue-500 text-white p-2 rounded-md hover:cursor-pointer disabled:bg-blue-300 disabled:cursor-not-allowed"
+                className="mt-4 flex justify-center items-center bg-blue-600 text-white font-medium p-2.5 rounded-lg hover:bg-blue-700 hover:shadow-md active:scale-95 transition-all disabled:bg-blue-400 disabled:cursor-not-allowed"
                 disabled={isPending}
             >
                 {isPending

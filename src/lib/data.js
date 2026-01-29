@@ -5,11 +5,8 @@ import prisma from '@/lib/prisma'
 
 // ------------------------- PLANTAS ------------------------- 
 
-
 export async function obtenerPlantas() {
-
     try {
-        // await new Promise((resolve) => setTimeout(resolve, 1000))
         const plantas = await prisma.planta.findMany({
             include: {
                 pacientes: {
@@ -23,14 +20,13 @@ export async function obtenerPlantas() {
         return plantas
     } catch (error) {
         console.log(error)
+        return []
     }
 }
 
 
 export async function obtenerPlanta(id) {
-
     try {
-        // await new Promise((resolve) => setTimeout(resolve, 1000))
         const planta = await prisma.planta.findUnique({
             where: {
                 id: Number(id)
@@ -42,12 +38,12 @@ export async function obtenerPlanta(id) {
         return planta
     } catch (error) {
         console.log(error)
+        return []
     }
 }
 
 
 export async function obtenerPlantasIdNombre() {
-
     try {
         const plantas = await prisma.planta.findMany({
             select: {
@@ -58,6 +54,7 @@ export async function obtenerPlantasIdNombre() {
         return plantas
     } catch (error) {
         console.log(error)
+        return []
     }
 }
 
@@ -66,7 +63,6 @@ export async function obtenerPlantasIdNombre() {
 // ------------------------- MEDICINAS ------------------------- 
 
 export async function obtenerMedicinas() {
-
     try {
         const medicinas = await prisma.medicina.findMany({
             include: {
@@ -78,15 +74,16 @@ export async function obtenerMedicinas() {
                 }
             }
         })
+        console.log("Medicinas encontradas:", medicinas); // DEBUG
         return medicinas
     } catch (error) {
-        console.log(error)
+        console.error("Error al obtener medicinas:", error); // DEBUG
+        return []
     }
 }
 
 
 export async function obtenerMedicina(id) {
-
     try {
         const medicina = await prisma.medicina.findUnique({
             where: {
@@ -99,12 +96,12 @@ export async function obtenerMedicina(id) {
         return medicina
     } catch (error) {
         console.log(error)
+        return []
     }
 }
 
 
 export async function obtenerMedicinasIdNombre() {
-
     try {
         const medicinas = await prisma.medicina.findMany({
             select: {
@@ -115,6 +112,7 @@ export async function obtenerMedicinasIdNombre() {
         return medicinas
     } catch (error) {
         console.log(error)
+        return []
     }
 }
 
@@ -123,7 +121,6 @@ export async function obtenerMedicinasIdNombre() {
 // ------------------------- PACIENTES ------------------------- 
 
 export async function obtenerPacientes() {
-
     try {
         const pacientes = await prisma.paciente.findMany({
             select: {
@@ -136,21 +133,24 @@ export async function obtenerPacientes() {
                 planta: {
                     select: {
                         id: true,
-                        nombre: true
+                        nombre: true,
+                        jefe_planta: true,
+                        numero_camas: true
                     }
                 },
                 medicinas: {
                     select: {
                         id: true,
-                        nombre: true
+                        nombre: true,
+                        via: true
                     }
                 }
             }
         })
-        console.log(pacientes)
         return pacientes
     } catch (error) {
         console.log(error)
+        return []
     }
 }
 
@@ -170,6 +170,7 @@ export async function obtenerPaciente(id) {
         return paciente
     } catch (error) {
         console.log(error)
+        return []
     }
 }
 
@@ -186,5 +187,6 @@ export async function obtenerPacientesIdNombre() {
         return pacientes
     } catch (error) {
         console.log(error)
+        return null
     }
 }

@@ -1,0 +1,37 @@
+[
+    {
+        "nombre": "Cardiología",
+        "jefe_planta": "Dr. Juan Pérez",
+        "numero_camas": 20
+    },
+    {
+        "nombre": "Pediatría",
+        "jefe_planta": "Dra. María López",
+        "numero_camas": 15
+    },
+    {
+        "nombre": "Traumatología",
+        "jefe_planta": "Dr. Pedro Rodríguez",
+        "numero_camas": 25
+    },
+    {
+        "nombre": "Neurología",
+        "jefe_planta": "Dra. Ana Martínez",
+        "numero_camas": 18
+    },
+    {
+        "nombre": "Oncología",
+        "jefe_planta": "Dr. Roberto Rodríguez",
+        "numero_camas": 22
+    },
+    {
+        "nombre": "Urgencias",
+        "jefe_planta": "Dra. Marina Cuenca",
+        "numero_camas": 30
+    },
+    {
+        "nombre": "Cuidados Intensivos",
+        "jefe_planta": "Dr. Luis Rodríguez",
+        "numero_camas": 10
+    }
+]

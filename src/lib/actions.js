@@ -11,16 +11,16 @@ import { revalidatePath } from "next/cache"
 
 export async function insertarPlanta(prevState, formData) {
     const nombre = formData.get('nombre')
-    const tutor = formData.get('tutor')
-    const aula = formData.get('aula')
+    const jefe_planta = formData.get('jefe_planta')
+    const numero_camas = Number(formData.get('numero_camas'))
 
 
     try {
         await prisma.planta.create({
             data: {
                 nombre,
-                tutor,
-                aula
+                jefe_planta,
+                numero_camas
             }
         })
         revalidatePath('/plantas')
@@ -37,16 +37,16 @@ export async function insertarPlanta(prevState, formData) {
 export async function modificarPlanta(prevState, formData) {
     const id = Number(formData.get('id'))
     const nombre = formData.get('nombre')
-    const tutor = formData.get('tutor')
-    const aula = formData.get('aula')
+    const jefe_planta = formData.get('jefe_planta')
+    const numero_camas = Number(formData.get('numero_camas'))
 
     try {
         await prisma.planta.update({
             where: { id },
             data: {
                 nombre,
-                tutor,
-                aula
+                jefe_planta,
+                numero_camas
             }
         })
         revalidatePath('/plantas')
@@ -81,15 +81,15 @@ export async function eliminarPlanta(prevState, formData) {
 
 export async function insertarMedicina(prevState, formData) {
     const nombre = formData.get('nombre')
-    const profesor = formData.get('profesor')
-    const horas_semana = Number(formData.get('horas_semana'))
+    const via = formData.get('via')
+    const observaciones = formData.get('observaciones')
 
     try {
         await prisma.medicina.create({
             data: {
                 nombre,
-                profesor,
-                horas_semana
+                via,
+                observaciones
             }
         })
         revalidatePath('/medicinas')
@@ -105,16 +105,16 @@ export async function insertarMedicina(prevState, formData) {
 export async function modificarMedicina(prevState, formData) {
     const id = Number(formData.get('id'))
     const nombre = formData.get('nombre')
-    const profesor = formData.get('profesor')
-    const horas_semana = Number(formData.get('horas_semana'))
+    const via = formData.get('via')
+    const observaciones = formData.get('observaciones')
 
     try {
         await prisma.medicina.update({
             where: { id },
             data: {
                 nombre,
-                profesor,
-                horas_semana
+                via,
+                observaciones
             }
         })
         revalidatePath('/medicinas')
